@@ -3,9 +3,10 @@ import { profile, socials, education, certifications } from '../data/resume';
 ---
 
 <section id="contact" class="section">
-  <div class="container">
+  <div class="container section-split">
     <h2 class="section-title reveal">Education &amp; Certifications</h2>
 
+    <div class="contact__content">
     <div class="edu">
       {
         education.map((e) => (
@@ -51,10 +52,14 @@ import { profile, socials, education, certifications } from '../data/resume';
         }
       </div>
     </div>
+    </div>
   </div>
 </section>
 
 <style>
+  .contact__content {
+    min-width: 0;
+  }
   .edu {
     display: grid;
     gap: 1.5rem;
