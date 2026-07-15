@@ -1,4 +1,4 @@
-/* ---- Design tokens ---- */
+/* ---- Design tokens (light is the default) ---- */
 :root {
   --bg: #ffffff;
   --bg-subtle: #f6f7f9;
@@ -7,31 +7,49 @@
   --text: #16191d;
   --text-muted: #5b636c;
   --accent: #2f6df6;
+  --accent-2: #7c5cff;
   --accent-soft: rgba(47, 109, 246, 0.1);
   --shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 8px 24px rgba(16, 24, 40, 0.05);
 
-  --container: 820px;
-  --radius: 12px;
+  --container: 860px;
+  --radius: 14px;
   --space: 1rem;
 
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-    Arial, "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+  --font-sans: "Inter Variable", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
     "Liberation Mono", monospace;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* Dark palette — applied when the OS prefers dark (and the user hasn't forced light),
+   OR when the user explicitly toggles dark. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --bg: #0e1116;
     --bg-subtle: #151a21;
-    --surface: #151a21;
+    --surface: #161b22;
     --border: #262c36;
     --text: #e8ebef;
     --text-muted: #9aa4b0;
     --accent: #6ea0ff;
+    --accent-2: #a78bfa;
     --accent-soft: rgba(110, 160, 255, 0.14);
     --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.35);
   }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1116;
+  --bg-subtle: #151a21;
+  --surface: #161b22;
+  --border: #262c36;
+  --text: #e8ebef;
+  --text-muted: #9aa4b0;
+  --accent: #6ea0ff;
+  --accent-2: #a78bfa;
+  --accent-soft: rgba(110, 160, 255, 0.14);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.35);
 }
 
 /* ---- Reset ---- */
@@ -56,6 +74,8 @@ body {
   font-size: 1rem;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  transition: background 0.3s var(--ease), color 0.3s var(--ease);
+  overflow-x: hidden;
 }
 img {
   max-width: 100%;
@@ -76,6 +96,21 @@ ul {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: 4px;
+}
+
+/* ---- Skip link ---- */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0.5rem;
+  z-index: 100;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+.skip-link:focus {
+  left: 0.75rem;
 }
 
 /* ---- Layout helpers ---- */
@@ -103,7 +138,7 @@ ul {
   color: var(--accent);
 }
 
-/* ---- Reusable chip ---- */
+/* ---- Chip ---- */
 .chip {
   display: inline-block;
   font-size: 0.82rem;
@@ -114,6 +149,13 @@ ul {
   color: var(--text-muted);
   background: var(--bg-subtle);
   white-space: nowrap;
+  transition: border-color 0.15s var(--ease), color 0.15s var(--ease),
+    transform 0.15s var(--ease);
+}
+.chip:hover {
+  border-color: var(--accent);
+  color: var(--text);
+  transform: translateY(-2px);
 }
 
 /* ---- Buttons ---- */
@@ -128,12 +170,15 @@ ul {
   border: 1px solid var(--border);
   background: var(--surface);
   color: var(--text);
-  transition: transform 0.08s ease, border-color 0.15s ease, background 0.15s ease;
+  cursor: pointer;
+  transition: transform 0.1s var(--ease), border-color 0.15s var(--ease),
+    background 0.15s var(--ease), box-shadow 0.15s var(--ease);
 }
 .btn:hover {
   text-decoration: none;
   border-color: var(--accent);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
 }
 .btn--primary {
   background: var(--accent);
@@ -144,9 +189,26 @@ ul {
   filter: brightness(1.05);
 }
 
+/* ---- Scroll reveal ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     scroll-behavior: auto !important;
-    transition: none !important;
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
   }
 }

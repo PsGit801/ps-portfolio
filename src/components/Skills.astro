@@ -4,11 +4,11 @@ import { skills } from '../data/resume';
 
 <section id="skills" class="section">
   <div class="container">
-    <h2 class="section-title">Skills</h2>
+    <h2 class="section-title reveal">Skills</h2>
     <div class="skills">
       {
         skills.map((s) => (
-          <div class="skills__group">
+          <div class="skills__group reveal">
             <h3 class="skills__label">{s.group}</h3>
             <ul class="skills__list">
               {s.items.map((item) => (

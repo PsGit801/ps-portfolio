@@ -1,20 +1,26 @@
 ---
-import { profile, socials } from '../data/resume';
+import { profile, socials, stats } from '../data/resume';
 ---
 
 <section id="top" class="hero">
-  <div class="container">
-    <p class="hero__role eyebrow">{profile.role}</p>
-    <h1 class="hero__name">{profile.name}</h1>
-    <p class="hero__tagline">{profile.tagline}</p>
-    <p class="hero__location">{profile.location}</p>
+  <div class="hero__aurora" aria-hidden="true">
+    <span class="blob blob--1"></span>
+    <span class="blob blob--2"></span>
+    <span class="blob blob--3"></span>
+  </div>
 
-    <div class="hero__actions">
+  <div class="container hero__inner">
+    <p class="hero__role eyebrow reveal">{profile.role}</p>
+    <h1 class="hero__name reveal">{profile.name}</h1>
+    <p class="hero__tagline reveal">{profile.tagline}</p>
+    <p class="hero__location reveal">{profile.location}</p>
+
+    <div class="hero__actions reveal">
       <a class="btn btn--primary" href={`mailto:${profile.email}`}>Get in touch</a>
       <a class="btn" href={profile.resumeUrl} target="_blank" rel="noopener">Download résumé</a>
     </div>
 
-    <ul class="hero__socials">
+    <ul class="hero__socials reveal">
       {
         socials.map((s) => (
           <li>
@@ -25,16 +31,80 @@ import { profile, socials } from '../data/resume';
         ))
       }
     </ul>
+
+    <dl class="stats reveal">
+      {
+        stats.map((s) => (
+          <div class="stats__item">
+            <dt class="stats__value">
+              {s.prefix}<span data-count={s.value}>0</span>{s.suffix}
+            </dt>
+            <dd class="stats__label">{s.label}</dd>
+          </div>
+        ))
+      }
+    </dl>
   </div>
 </section>
 
 <style>
   .hero {
-    padding-block: clamp(3rem, 9vw, 6rem);
-    background:
-      radial-gradient(60% 120% at 100% 0%, var(--accent-soft), transparent 60%),
-      var(--bg);
+    position: relative;
+    overflow: hidden;
+    padding-block: clamp(3rem, 9vw, 6.5rem);
   }
+  .hero__inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Animated aurora */
+  .hero__aurora {
+    position: absolute;
+    inset: -20% -10% auto -10%;
+    height: 130%;
+    z-index: 0;
+    filter: blur(70px);
+    opacity: 0.55;
+    pointer-events: none;
+  }
+  .blob {
+    position: absolute;
+    display: block;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: drift 18s ease-in-out infinite;
+  }
+  .blob--1 {
+    width: 34rem;
+    height: 34rem;
+    top: -8rem;
+    right: -6rem;
+    background: radial-gradient(circle, var(--accent), transparent 65%);
+  }
+  .blob--2 {
+    width: 26rem;
+    height: 26rem;
+    top: 2rem;
+    left: -6rem;
+    background: radial-gradient(circle, var(--accent-2), transparent 65%);
+    animation-delay: -6s;
+  }
+  .blob--3 {
+    width: 20rem;
+    height: 20rem;
+    top: 10rem;
+    left: 40%;
+    background: radial-gradient(circle, var(--accent), transparent 70%);
+    animation-delay: -11s;
+    opacity: 0.7;
+  }
+  @keyframes drift {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(3rem, 2rem) scale(1.08); }
+    66% { transform: translate(-2rem, -1.5rem) scale(0.96); }
+  }
+
   .hero__role {
     font-size: 0.9rem;
     font-weight: 600;
@@ -42,13 +112,13 @@ import { profile, socials } from '../data/resume';
     margin-bottom: 0.5rem;
   }
   .hero__name {
-    font-size: clamp(2.4rem, 7vw, 3.6rem);
-    line-height: 1.05;
-    letter-spacing: -0.02em;
+    font-size: clamp(2.5rem, 7.5vw, 4rem);
+    line-height: 1.03;
+    letter-spacing: -0.03em;
     font-weight: 700;
   }
   .hero__tagline {
-    font-size: clamp(1.1rem, 3vw, 1.4rem);
+    font-size: clamp(1.15rem, 3vw, 1.45rem);
     color: var(--text-muted);
     margin-top: 0.9rem;
     max-width: 34ch;
@@ -76,5 +146,45 @@ import { profile, socials } from '../data/resume';
   }
   .hero__socials a:hover {
     color: var(--accent);
+  }
+
+  /* Stats strip */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .stats__item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  .stats__value {
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .stats__label {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    line-height: 1.4;
+    max-width: 22ch;
+  }
+  @media (max-width: 560px) {
+    .stats {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+    .stats__label {
+      max-width: none;
+    }
   }
 </style>

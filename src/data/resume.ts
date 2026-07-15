@@ -13,6 +13,14 @@ export const profile = {
   resumeUrl: '/Liew-Phing-Shuin-Resume.pdf',
 };
 
+// Headline metrics shown in the hero. `value` is the number that counts up;
+// `prefix`/`suffix` frame it; `label` describes it.
+export const stats: { value: number; prefix?: string; suffix?: string; label: string }[] = [
+  { value: 70, suffix: '%', label: 'Less manual work via LLM automation' },
+  { value: 3, suffix: '+', label: 'Years building AI & ML systems' },
+  { value: 10, suffix: '+', label: 'Production AI systems shipped' },
+];
+
 export const socials = [
   { label: 'Email', href: 'mailto:jacksonliew08@gmail.com', handle: 'jacksonliew08@gmail.com' },
   { label: 'GitHub', href: 'https://github.com/PsGit801', handle: 'github.com/PsGit801' },
