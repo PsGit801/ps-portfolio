@@ -1,24 +1,24 @@
 /* ---- Design tokens (light is the default) ---- */
 :root {
   --bg: #ffffff;
-  --bg-subtle: #f6f7f9;
+  --bg-subtle: #f5f5f8;
   --surface: #ffffff;
-  --border: #e6e8eb;
-  --text: #16191d;
-  --text-muted: #5b636c;
-  --accent: #2f6df6;
-  --accent-2: #7c5cff;
-  --accent-soft: rgba(47, 109, 246, 0.1);
-  --shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 8px 24px rgba(16, 24, 40, 0.05);
+  --border: #e7e7ee;
+  --text: #14141b;
+  --text-muted: #5c5c6b;
+  --accent: #6366f1;
+  --accent-2: #8b5cf6;
+  --accent-soft: rgba(99, 102, 241, 0.1);
+  --shadow: 0 1px 2px rgba(20, 20, 43, 0.05), 0 10px 30px rgba(20, 20, 43, 0.06);
 
   --container: 860px;
   --radius: 14px;
   --space: 1rem;
 
-  --font-sans: "Inter Variable", -apple-system, BlinkMacSystemFont, "Segoe UI",
+  --font-sans: "Geist Variable", -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, Helvetica, Arial, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
-    "Liberation Mono", monospace;
+  --font-mono: "Geist Mono Variable", ui-monospace, SFMono-Regular, "SF Mono",
+    Menlo, Consolas, "Liberation Mono", monospace;
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -27,29 +27,29 @@
    OR when the user explicitly toggles dark. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0e1116;
-    --bg-subtle: #151a21;
-    --surface: #161b22;
-    --border: #262c36;
-    --text: #e8ebef;
-    --text-muted: #9aa4b0;
-    --accent: #6ea0ff;
+    --bg: #0c0d14;
+    --bg-subtle: #14151f;
+    --surface: #161824;
+    --border: #262838;
+    --text: #e9e9f2;
+    --text-muted: #9a9bb0;
+    --accent: #818cf8;
     --accent-2: #a78bfa;
-    --accent-soft: rgba(110, 160, 255, 0.14);
-    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.35);
+    --accent-soft: rgba(129, 140, 248, 0.15);
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 14px 34px rgba(0, 0, 0, 0.4);
   }
 }
 :root[data-theme="dark"] {
-  --bg: #0e1116;
-  --bg-subtle: #151a21;
-  --surface: #161b22;
-  --border: #262c36;
-  --text: #e8ebef;
-  --text-muted: #9aa4b0;
-  --accent: #6ea0ff;
+  --bg: #0c0d14;
+  --bg-subtle: #14151f;
+  --surface: #161824;
+  --border: #262838;
+  --text: #e9e9f2;
+  --text-muted: #9a9bb0;
+  --accent: #818cf8;
   --accent-2: #a78bfa;
-  --accent-soft: rgba(110, 160, 255, 0.14);
-  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.35);
+  --accent-soft: rgba(129, 140, 248, 0.15);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 14px 34px rgba(0, 0, 0, 0.4);
 }
 
 /* ---- Reset ---- */
@@ -127,14 +127,17 @@ ul {
   border-top: 1px solid var(--border);
 }
 .section-title {
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-muted);
   margin-bottom: 1.75rem;
 }
 .eyebrow {
+  font-family: var(--font-mono);
+  font-weight: 500;
   color: var(--accent);
 }
 
