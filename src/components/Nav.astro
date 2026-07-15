@@ -1,0 +1,70 @@
+---
+import { profile } from '../data/resume';
+
+const links = [
+  { href: '#about', label: 'About' },
+  { href: '#experience', label: 'Experience' },
+  { href: '#skills', label: 'Skills' },
+  { href: '#projects', label: 'Projects' },
+  { href: '#contact', label: 'Contact' },
+];
+---
+
+<header class="nav">
+  <div class="container nav__inner">
+    <a href="#top" class="nav__brand">{profile.name}</a>
+    <nav class="nav__links" aria-label="Primary">
+      {links.map((l) => <a href={l.href}>{l.label}</a>)}
+    </nav>
+    <a class="btn btn--primary nav__resume" href={profile.resumeUrl} target="_blank" rel="noopener">
+      Résumé
+    </a>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    backdrop-filter: saturate(180%) blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav__inner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    height: 3.75rem;
+  }
+  .nav__brand {
+    font-weight: 600;
+    color: var(--text);
+    margin-right: auto;
+  }
+  .nav__brand:hover {
+    text-decoration: none;
+    color: var(--accent);
+  }
+  .nav__links {
+    display: flex;
+    gap: 1.25rem;
+  }
+  .nav__links a {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+  }
+  .nav__links a:hover {
+    color: var(--text);
+    text-decoration: none;
+  }
+  .nav__resume {
+    padding: 0.4rem 0.85rem;
+    font-size: 0.9rem;
+  }
+  @media (max-width: 640px) {
+    .nav__links {
+      display: none;
+    }
+  }
+</style>

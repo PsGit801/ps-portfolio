@@ -1,0 +1,132 @@
+---
+import { profile, socials, education, certifications } from '../data/resume';
+---
+
+<section id="contact" class="section">
+  <div class="container">
+    <h2 class="section-title">Education &amp; Certifications</h2>
+
+    <div class="edu">
+      {
+        education.map((e) => (
+          <div class="edu__item">
+            <h3 class="edu__cred">{e.credential}</h3>
+            <p class="edu__detail">{e.detail} · {e.place}</p>
+            <p class="edu__meta">
+              <span>{e.year}</span>
+              {e.note && <span class="edu__note">{e.note}</span>}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+
+    <ul class="certs">
+      {
+        certifications.map((c) => (
+          <li class="certs__item">
+            <span class="certs__name">{c.name}</span>
+            <span class="certs__meta">{c.issuer} · {c.year}</span>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="cta">
+      <h3 class="cta__title">Let's build something.</h3>
+      <p class="cta__text">
+        I'm always happy to talk about AI systems, RAG, and automation. The fastest way to
+        reach me is email.
+      </p>
+      <div class="cta__links">
+        <a class="btn btn--primary" href={`mailto:${profile.email}`}>{profile.email}</a>
+        {
+          socials
+            .filter((s) => s.label !== 'Email')
+            .map((s) => (
+              <a class="btn" href={s.href} target="_blank" rel="noopener">
+                {s.label}
+              </a>
+            ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .edu {
+    display: grid;
+    gap: 1.5rem;
+  }
+  .edu__cred {
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+  .edu__detail {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-top: 0.15rem;
+  }
+  .edu__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+    margin-top: 0.35rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+  .edu__note {
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 0.1rem 0.55rem;
+    border-radius: 999px;
+    font-weight: 500;
+  }
+
+  .certs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 0.85rem 1.5rem;
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .certs__item {
+    display: flex;
+    flex-direction: column;
+  }
+  .certs__name {
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+  .certs__meta {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+
+  .cta {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: var(--bg-subtle);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+  .cta__title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .cta__text {
+    color: var(--text-muted);
+    margin-top: 0.6rem;
+    max-width: 52ch;
+  }
+  .cta__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+</style>

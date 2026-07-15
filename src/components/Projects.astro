@@ -1,0 +1,101 @@
+---
+import { projects } from '../data/resume';
+---
+
+<section id="projects" class="section">
+  <div class="container">
+    <h2 class="section-title">Projects</h2>
+    <div class="grid">
+      {
+        projects.map((p) => (
+          <article class="card">
+            <header class="card__head">
+              <h3 class="card__title">
+                {p.href ? (
+                  <a href={p.href} target="_blank" rel="noopener">
+                    {p.name} <span class="card__arrow" aria-hidden="true">↗</span>
+                  </a>
+                ) : (
+                  p.name
+                )}
+              </h3>
+            </header>
+            <p class="card__blurb">{p.blurb}</p>
+            <ul class="card__points">
+              {p.points.map((pt) => <li>{pt}</li>)}
+            </ul>
+            <ul class="card__tags">
+              {p.tags.map((t) => (
+                <li class="chip">{t}</li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    padding: 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: transform 0.12s ease, border-color 0.15s ease;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+  }
+  .card__title {
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  .card__title a {
+    color: var(--text);
+  }
+  .card__title a:hover {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .card__arrow {
+    font-size: 0.9em;
+    color: var(--accent);
+  }
+  .card__blurb {
+    color: var(--text);
+  }
+  .card__points {
+    display: grid;
+    gap: 0.45rem;
+    font-size: 0.92rem;
+  }
+  .card__points li {
+    position: relative;
+    padding-left: 1.1rem;
+    color: var(--text-muted);
+  }
+  .card__points li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+  .card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: auto;
+    padding-top: 0.5rem;
+  }
+</style>

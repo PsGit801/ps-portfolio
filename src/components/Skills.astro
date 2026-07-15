@@ -1,0 +1,40 @@
+---
+import { skills } from '../data/resume';
+---
+
+<section id="skills" class="section">
+  <div class="container">
+    <h2 class="section-title">Skills</h2>
+    <div class="skills">
+      {
+        skills.map((s) => (
+          <div class="skills__group">
+            <h3 class="skills__label">{s.group}</h3>
+            <ul class="skills__list">
+              {s.items.map((item) => (
+                <li class="chip">{item}</li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .skills {
+    display: grid;
+    gap: 1.75rem;
+  }
+  .skills__label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+  .skills__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+</style>
