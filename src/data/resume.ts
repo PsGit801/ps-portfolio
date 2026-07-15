@@ -3,6 +3,7 @@
 
 export const profile = {
   name: 'Liew Phing Shuin',
+  heroName: 'PS Liew',
   role: 'AI Engineer',
   tagline: 'Building scalable, business-driven AI systems.',
   location: 'Kedah, Malaysia',
