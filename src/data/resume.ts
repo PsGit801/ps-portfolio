@@ -13,6 +13,22 @@ export const profile = {
   resumeUrl: '/Liew-Phing-Shuin-Resume.pdf',
 };
 
+// About section content.
+export const about = {
+  lead: 'I build end-to-end AI systems that ship to production.',
+  body: [
+    'AI Engineer specializing in scalable, business-driven AI — LLM integration, RAG systems, AI coding agents, and workflow automation that accelerate software delivery and operations.',
+    'I work across the whole pipeline: embeddings, vector databases (FAISS, Qdrant), cloud and self-hosted LLM deployments, and agentic workflows — mostly with Python, FastAPI, and Azure OpenAI.',
+  ],
+  focus: ['RAG systems', 'LLM serving', 'Agentic workflows', 'Workflow automation', 'Vector search'],
+  facts: [
+    { label: 'Role', value: 'AI Engineer @ V Gallant' },
+    { label: 'Based in', value: 'Kedah, Malaysia' },
+    { label: 'Focus', value: 'LLM · RAG · Automation' },
+    { label: 'Core stack', value: 'Python · FastAPI · vLLM' },
+  ],
+};
+
 // Headline metrics shown in the hero. `value` is the number that counts up;
 // `prefix`/`suffix` frame it; `label` describes it.
 export const stats: { value: number; prefix?: string; suffix?: string; label: string }[] = [

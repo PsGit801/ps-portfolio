@@ -1,18 +1,116 @@
 ---
-import { profile } from '../data/resume';
+import { about } from '../data/resume';
 ---
 
 <section id="about" class="section">
   <div class="container">
     <h2 class="section-title reveal">About</h2>
-    <p class="about__text reveal">{profile.summary}</p>
+
+    <div class="about">
+      <div class="about__main reveal">
+        <p class="about__lead">{about.lead}</p>
+        {about.body.map((para) => <p class="about__body">{para}</p>)}
+        <ul class="about__chips">
+          {about.focus.map((f) => <li class="chip">{f}</li>)}
+        </ul>
+      </div>
+
+      <aside class="about__panel reveal" aria-label="At a glance">
+        <p class="about__panel-title">At a glance</p>
+        <dl class="about__facts">
+          {
+            about.facts.map((fact) => (
+              <div class="about__fact">
+                <dt>{fact.label}</dt>
+                <dd>{fact.value}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </aside>
+    </div>
   </div>
 </section>
 
 <style>
-  .about__text {
-    font-size: 1.12rem;
+  .about {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .about__lead {
+    font-size: clamp(1.3rem, 3vw, 1.7rem);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.35;
     color: var(--text);
-    max-width: 68ch;
+    max-width: 24ch;
+  }
+  .about__body {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    margin-top: 1rem;
+    max-width: 60ch;
+  }
+  .about__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .about__panel {
+    position: sticky;
+    top: 5rem;
+    padding: 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+  .about__panel-title {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+  .about__facts {
+    display: grid;
+    gap: 0.9rem;
+  }
+  .about__fact {
+    display: grid;
+    gap: 0.15rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .about__fact:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+  .about__fact dt {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+  }
+  .about__fact dd {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  @media (max-width: 720px) {
+    .about {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .about__panel {
+      position: static;
+    }
   }
 </style>
