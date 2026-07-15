@@ -10,15 +10,7 @@ import { projects } from '../data/resume';
         projects.map((p) => (
           <article class="card reveal">
             <header class="card__head">
-              <h3 class="card__title">
-                {p.href ? (
-                  <a href={p.href} target="_blank" rel="noopener">
-                    {p.name} <span class="card__arrow" aria-hidden="true">↗</span>
-                  </a>
-                ) : (
-                  p.name
-                )}
-              </h3>
+              <h3 class="card__title">{p.name}</h3>
             </header>
             <p class="card__blurb">{p.blurb}</p>
             <ul class="card__points">
@@ -29,6 +21,15 @@ import { projects } from '../data/resume';
                 <li class="chip">{t}</li>
               ))}
             </ul>
+            {p.links && p.links.length > 0 && (
+              <div class="card__links">
+                {p.links.map((l) => (
+                  <a class="card__link" href={l.href} target="_blank" rel="noopener">
+                    {l.label} <span aria-hidden="true">↗</span>
+                  </a>
+                ))}
+              </div>
+            )}
           </article>
         ))
       }
@@ -60,17 +61,7 @@ import { projects } from '../data/resume';
   .card__title {
     font-size: 1.1rem;
     font-weight: 600;
-  }
-  .card__title a {
     color: var(--text);
-  }
-  .card__title a:hover {
-    color: var(--accent);
-    text-decoration: none;
-  }
-  .card__arrow {
-    font-size: 0.9em;
-    color: var(--accent);
   }
   .card__blurb {
     color: var(--text);
@@ -97,5 +88,31 @@ import { projects } from '../data/resume';
     gap: 0.45rem;
     margin-top: auto;
     padding-top: 0.5rem;
+  }
+  .card__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    padding-top: 0.85rem;
+    margin-top: 0.85rem;
+    border-top: 1px solid var(--border);
+  }
+  .card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--accent);
+  }
+  .card__link:hover {
+    text-decoration: none;
+    gap: 0.55rem;
+  }
+  .card__link span {
+    transition: transform 0.15s var(--ease);
+  }
+  .card__link:hover span {
+    transform: translate(2px, -2px);
   }
 </style>

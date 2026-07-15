@@ -86,19 +86,20 @@ export type Project = {
   blurb: string;
   points: string[];
   tags: string[];
-  href?: string;
+  links?: { label: string; href: string }[];
 };
 
 export const projects: Project[] = [
   {
     name: 'Quantus — Trading Alert Bot',
-    blurb: 'A Python market-scanning bot that detects double-bottom "flush-reclaim" chart patterns and pushes annotated Telegram/Discord alerts.',
+    blurb: 'A Python bot that scans stocks for double-bottom reversals (daily & weekly), confirms with a volume-backed breakout, and sends Telegram/Discord alerts with annotated charts and position sizing.',
     points: [
-      'Walk-forward backtesting engine with SQLite state and cron/launchd scheduling.',
-      'Systematic bear-trap reversal equity strategy: in-sample/out-of-sample validation, parameter sweeps, and R-multiple / profit-factor / drawdown analytics.',
+      'Walk-forward backtesting engine and parameter sweep with SQLite state and cron/launchd scheduling.',
+      'Systematic bear-trap reversal equity strategy: in-sample/out-of-sample validation, R-multiple / profit-factor / drawdown analytics.',
       'ATR-based signal filters, risk-based position sizing, and automated tests.',
     ],
     tags: ['Python', 'Backtesting', 'SQLite', 'Automation'],
+    links: [{ label: 'Code', href: 'https://github.com/PsGit801/quantus' }],
   },
   {
     name: 'Published Research Paper — AIBPM',
@@ -107,7 +108,7 @@ export const projects: Project[] = [
       'AIBPM publication covering applied analytics research.',
     ],
     tags: ['Research', 'Analytics'],
-    href: 'https://www.researchgate.net/publication/366105361',
+    links: [{ label: 'Read paper', href: 'https://www.researchgate.net/publication/366105361' }],
   },
 ];
 
