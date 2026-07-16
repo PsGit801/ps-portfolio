@@ -53,6 +53,20 @@ import { profile, socials, stats } from '../data/resume';
     overflow: hidden;
     padding-block: clamp(3rem, 9vw, 6.5rem);
   }
+  /* faint tech grid layered over the aurora */
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 40px 40px;
+    -webkit-mask-image: radial-gradient(100% 90% at 20% 10%, #000 30%, transparent 75%);
+    mask-image: radial-gradient(100% 90% at 20% 10%, #000 30%, transparent 75%);
+  }
   .hero__inner {
     position: relative;
     z-index: 1;

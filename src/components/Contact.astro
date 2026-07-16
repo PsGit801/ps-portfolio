@@ -112,11 +112,43 @@ import { profile, socials, education, certifications } from '../data/resume';
   }
 
   .cta {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
     margin-top: 3rem;
     padding: 2rem;
-    background: var(--bg-subtle);
-    border: 1px solid var(--border);
+    border: 1px solid transparent;
     border-radius: var(--radius);
+    background:
+      linear-gradient(var(--bg-subtle), var(--bg-subtle)) padding-box,
+      linear-gradient(135deg, var(--accent), var(--accent-2)) border-box;
+  }
+  /* grid texture */
+  .cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 30px 30px;
+    -webkit-mask-image: radial-gradient(120% 120% at 100% 0%, #000 15%, transparent 68%);
+    mask-image: radial-gradient(120% 120% at 100% 0%, #000 15%, transparent 68%);
+  }
+  /* accent glow */
+  .cta::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    width: 26rem;
+    height: 20rem;
+    top: -7rem;
+    right: -7rem;
+    background: radial-gradient(circle, var(--accent-soft), transparent 66%);
+    filter: blur(36px);
   }
   .cta__title {
     font-size: 1.4rem;
