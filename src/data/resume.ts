@@ -49,7 +49,10 @@ export type Experience = {
   company: string;
   period: string;
   location: string;
-  points: string[];
+  summary: string;
+  stack: string[];
+  visible: number; // bullets shown before "Show more"
+  points: string[]; // strongest first; may contain <strong> emphasis (rendered as HTML)
 };
 
 export const experience: Experience[] = [
@@ -58,14 +61,18 @@ export const experience: Experience[] = [
     company: 'V Gallant (VCIG)',
     period: 'Dec 2025 – Present',
     location: 'Kuala Lumpur',
+    summary:
+      'Own production AI platforms end-to-end — from GPU inference infrastructure to RAG, automation, and agentic pipelines.',
+    stack: ['vLLM', 'vLLM-Omni', 'Qdrant', 'n8n', 'FastAPI', 'Playwright', 'VLMs'],
+    visible: 4,
     points: [
-      'Led enterprise automation and workflow orchestration using n8n, streamlining operational processes and AI-driven workflows.',
-      'Architected, deployed, and operated a self-hosted AI creative generation platform (Pixel Factory) serving FLUX 2 image generation and LTX 2.3 video generation models through vLLM-Omni inference infrastructure.',
-      'Deployed and managed DeepSeek V4 Flash inference across dual-GPU servers using vLLM, integrating with Open WebUI to deliver scalable Text-as-a-Service (TaaS) with optimized throughput and low-latency inference.',
-      'Developed an AI-powered invoice processing pipeline using Vision Language Models (VLMs) to extract structured data from unstructured invoices, combined with Playwright browser automation for autonomous POS submission.',
-      'Built a multi-tenant vector search platform on Qdrant with hybrid retrieval (BGE sparse embeddings, dense embeddings, and reranking) to support high-accuracy RAG systems.',
-      'Engineered a Text-to-SQL service with query routing between structured SQL databases and unstructured RAG pipelines to optimize response accuracy and relevance.',
-      'Designed an asynchronous embedding and ingestion pipeline with job tracking, background workers, and scalable processing for high-volume AI data workflows.',
+      'Architected and operated <strong>Pixel Factory</strong>, a self-hosted creative-generation platform serving <strong>FLUX 2</strong> image and <strong>LTX 2.3</strong> video models on vLLM-Omni.',
+      'Deployed <strong>DeepSeek V4 Flash</strong> across <strong>dual-GPU</strong> servers with vLLM + Open WebUI, delivering low-latency Text-as-a-Service.',
+      'Built a <strong>multi-tenant vector search</strong> platform on Qdrant with hybrid retrieval (BGE sparse + dense + reranking) for high-accuracy RAG.',
+      'Developed an <strong>autonomous invoice pipeline</strong> using Vision Language Models + Playwright to extract data and submit to POS systems.',
+      'Led enterprise automation and workflow orchestration with <strong>n8n</strong> across operational processes.',
+      'Engineered a <strong>Text-to-SQL</strong> service with query routing between SQL databases and RAG pipelines.',
+      'Designed an <strong>async embedding &amp; ingestion</strong> pipeline with job tracking and background workers for high-volume workflows.',
     ],
   },
   {
@@ -73,14 +80,16 @@ export const experience: Experience[] = [
     company: 'Keysight Technologies',
     period: 'Mar 2024 – Nov 2025',
     location: 'Penang',
+    summary: 'Shipped LLM/RAG tools and automation that cut manual work for R&D teams.',
+    stack: ['RAG', 'Whisper', 'llama.cpp', 'CUDA', 'Selenium', 'Streamlit'],
+    visible: 3,
     points: [
-      'Built a Document AI Chatbot (LLM + RAG) over emails, meeting recordings, and slides, helping R&D engineers retrieve technical insights and project knowledge efficiently.',
-      'Implemented video transcription (ASR) with OpenAI Whisper for chatbot data.',
-      'Set up and served LLMs locally using llama.cpp with CUDA GPU optimization.',
-      'Built a scalable news scraping tool (Selenium, BeautifulSoup) and automated titles, keywords, and summaries with an LLM — reducing manual analyst workload by 70%.',
+      'Built a <strong>Document AI Chatbot</strong> (LLM + RAG) over emails, recordings, and slides so R&D engineers could retrieve project knowledge instantly.',
+      'Automated news processing with an LLM, <strong>cutting manual analyst workload 70%</strong> (Selenium + BeautifulSoup scraper).',
+      'Served LLMs locally with <strong>llama.cpp + CUDA</strong> and added <strong>Whisper</strong> ASR for transcription.',
       'Automated insights extraction and report generation from PDF reports using LLMs.',
       'Developed a product recommender system (Association Rule Mining + Collaborative Filtering).',
-      'Built interactive Streamlit web apps to test and demonstrate AI/ML prototypes.',
+      'Built interactive Streamlit apps to test and demo AI/ML prototypes.',
     ],
   },
   {
@@ -88,12 +97,15 @@ export const experience: Experience[] = [
     company: 'Keysight Technologies',
     period: 'Aug 2023 – Jan 2024',
     location: 'Penang, Malaysia',
+    summary: 'Built forecasting and early-warning models for market intelligence.',
+    stack: ['Time-series', 'Forecasting', 'Market Basket Analysis'],
+    visible: 2,
     points: [
-      'Delivered analytics, prediction, and forecasting projects using statistical methods and machine learning.',
-      'Developed time-series forecasting models to predict economic indicators and market trends.',
-      'Built data models for an early-alert system anticipating market downturns and recoveries.',
-      'Researched an inflation simulator model for forecasting inflation scenarios and explored Market Basket Analysis for cross-selling strategies.',
-      'Volunteered with KEYS2School and GETS (Girls in Engineering & Technologies) to support STEM education.',
+      'Developed <strong>time-series forecasting</strong> models for economic indicators and market trends.',
+      'Built an <strong>early-alert system</strong> anticipating market downturns and recoveries.',
+      'Delivered analytics and prediction projects using statistical methods and ML.',
+      'Researched an inflation simulator and explored Market Basket Analysis for cross-selling.',
+      'Volunteered with KEYS2School and GETS (Girls in Engineering &amp; Technologies) to support STEM education.',
     ],
   },
 ];

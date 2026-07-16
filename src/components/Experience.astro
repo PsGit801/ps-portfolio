@@ -7,23 +7,62 @@ import { experience } from '../data/resume';
     <h2 class="section-title reveal">Experience</h2>
     <ol class="timeline">
       {
-        experience.map((job) => (
-          <li class="job reveal">
-            <div class="job__head">
-              <h3 class="job__role">
-                {job.role} <span class="job__company">· {job.company}</span>
-              </h3>
-              <p class="job__meta">
-                <span>{job.period}</span>
-                <span aria-hidden="true">·</span>
-                <span>{job.location}</span>
-              </p>
-            </div>
-            <ul class="job__points">
-              {job.points.map((p) => <li>{p}</li>)}
-            </ul>
-          </li>
-        ))
+        experience.map((job) => {
+          const shown = job.points.slice(0, job.visible);
+          const hidden = job.points.slice(job.visible);
+          return (
+            <li class="job reveal">
+              <div class="job__head">
+                <h3 class="job__role">
+                  {job.role} <span class="job__company">· {job.company}</span>
+                </h3>
+                <p class="job__meta">
+                  <span>{job.period}</span>
+                  <span aria-hidden="true">·</span>
+                  <span>{job.location}</span>
+                </p>
+              </div>
+
+              <p class="job__summary">{job.summary}</p>
+
+              <ul class="job__stack">
+                {job.stack.map((t) => (
+                  <li class="chip chip--sm">{t}</li>
+                ))}
+              </ul>
+
+              <ul class="job__points">
+                {shown.map((p) => (
+                  <li set:html={p} />
+                ))}
+              </ul>
+
+              {hidden.length > 0 && (
+                <details class="job__more">
+                  <summary>
+                    <span class="lbl lbl--more">Show {hidden.length} more</span>
+                    <span class="lbl lbl--less">Show less</span>
+                    <svg class="chev" width="11" height="11" viewBox="0 0 12 12" aria-hidden="true">
+                      <path
+                        d="M3 4.5 L6 7.5 L9 4.5"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </summary>
+                  <ul class="job__points job__points--more">
+                    {hidden.map((p) => (
+                      <li set:html={p} />
+                    ))}
+                  </ul>
+                </details>
+              )}
+            </li>
+          );
+        })
       }
     </ol>
   </div>
@@ -32,12 +71,41 @@ import { experience } from '../data/resume';
 <style>
   .timeline {
     display: grid;
-    gap: 2.25rem;
+    gap: 2.75rem;
   }
   .job {
+    position: relative;
     display: grid;
-    gap: 0.85rem;
+    gap: 0.7rem;
+    padding-left: 1.75rem;
   }
+  /* timeline node */
+  .job::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.45rem;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 4px var(--accent-soft);
+    z-index: 1;
+  }
+  /* connecting line */
+  .job::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 1.2rem;
+    bottom: -2.75rem;
+    width: 2px;
+    background: var(--border);
+  }
+  .job:last-child::after {
+    display: none;
+  }
+
   .job__role {
     font-size: 1.15rem;
     font-weight: 600;
@@ -52,28 +120,89 @@ import { experience } from '../data/resume';
     flex-wrap: wrap;
     gap: 0.5rem;
     color: var(--text-muted);
-    font-size: 0.9rem;
-    margin-top: 0.2rem;
+    font-size: 0.88rem;
+    font-family: var(--font-mono);
+    margin-top: 0.15rem;
   }
+
+  .job__summary {
+    color: var(--text);
+    font-size: 1.02rem;
+    max-width: 62ch;
+  }
+
+  .job__stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.1rem;
+  }
+  .chip--sm {
+    font-size: 0.74rem;
+    padding: 0.18rem 0.5rem;
+  }
+
   .job__points {
     display: grid;
-    gap: 0.55rem;
+    gap: 0.5rem;
     color: var(--text);
     max-width: 68ch;
+    margin-top: 0.35rem;
   }
   .job__points li {
     position: relative;
-    padding-left: 1.25rem;
+    padding-left: 1.1rem;
     color: var(--text-muted);
   }
   .job__points li::before {
-    content: '';
+    content: '–';
     position: absolute;
-    left: 0.1rem;
-    top: 0.68em;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--accent);
+    left: 0;
+    top: -0.05em;
+    color: var(--text-muted);
+  }
+  .job__points :global(strong) {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .job__points--more {
+    margin-top: 0.5rem;
+  }
+
+  /* Show more / less */
+  .job__more {
+    margin-top: 0.2rem;
+  }
+  .job__more summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    cursor: pointer;
+    list-style: none;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--accent);
+    width: fit-content;
+  }
+  .job__more summary::-webkit-details-marker {
+    display: none;
+  }
+  .job__more summary .lbl--less {
+    display: none;
+  }
+  .job__more[open] summary .lbl--more {
+    display: none;
+  }
+  .job__more[open] summary .lbl--less {
+    display: inline;
+  }
+  .job__more summary:hover .lbl {
+    text-decoration: underline;
+  }
+  .chev {
+    transition: transform 0.2s var(--ease);
+  }
+  .job__more[open] .chev {
+    transform: rotate(180deg);
   }
 </style>
