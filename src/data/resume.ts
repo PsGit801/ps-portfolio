@@ -9,7 +9,6 @@ export const profile = {
   location: 'Kedah, Malaysia',
   summary:
     'AI Engineer specializing in scalable, business-driven AI solutions. Experienced in LLM integration, RAG systems, AI coding agents, and workflow automation to accelerate software delivery and business operations. I build end-to-end AI pipelines — embeddings, vector databases (FAISS, Qdrant), cloud and self-hosted LLM deployments, and agentic workflows — with Python, FastAPI, and Azure OpenAI, delivering production-ready AI platforms and applications.',
-  resumeUrl: '/Liew-Phing-Shuin-Resume.pdf',
 };
 
 // About section content.
