@@ -7,8 +7,6 @@ export const profile = {
   role: 'AI Engineer',
   tagline: 'Building scalable, business-driven AI systems.',
   location: 'Kedah, Malaysia',
-  email: 'jacksonliew08@gmail.com',
-  phone: '+60 19-578 6488',
   summary:
     'AI Engineer specializing in scalable, business-driven AI solutions. Experienced in LLM integration, RAG systems, AI coding agents, and workflow automation to accelerate software delivery and business operations. I build end-to-end AI pipelines — embeddings, vector databases (FAISS, Qdrant), cloud and self-hosted LLM deployments, and agentic workflows — with Python, FastAPI, and Azure OpenAI, delivering production-ready AI platforms and applications.',
   resumeUrl: '/Liew-Phing-Shuin-Resume.pdf',
@@ -39,7 +37,6 @@ export const stats: { value: number; prefix?: string; suffix?: string; label: st
 ];
 
 export const socials = [
-  { label: 'Email', href: 'mailto:jacksonliew08@gmail.com', handle: 'jacksonliew08@gmail.com' },
   { label: 'GitHub', href: 'https://github.com/PsGit801', handle: 'github.com/PsGit801' },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/phingshuin', handle: 'in/phingshuin' },
 ];

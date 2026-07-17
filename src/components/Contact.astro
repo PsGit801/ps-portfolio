@@ -1,5 +1,5 @@
 ---
-import { profile, socials, education, certifications } from '../data/resume';
+import { socials, education, certifications } from '../data/resume';
 ---
 
 <section id="contact" class="section">
@@ -36,19 +36,21 @@ import { profile, socials, education, certifications } from '../data/resume';
     <div class="cta reveal">
       <h3 class="cta__title">Let's build something.</h3>
       <p class="cta__text">
-        I'm always happy to talk about AI systems, RAG, and automation. The fastest way to
-        reach me is email.
+        I'm always happy to talk about AI systems, RAG, and automation. The best way to
+        reach me is on LinkedIn.
       </p>
       <div class="cta__links">
-        <a class="btn btn--primary" href={`mailto:${profile.email}`}>{profile.email}</a>
         {
-          socials
-            .filter((s) => s.label !== 'Email')
-            .map((s) => (
-              <a class="btn" href={s.href} target="_blank" rel="noopener">
-                {s.label}
-              </a>
-            ))
+          socials.map((s) => (
+            <a
+              class:list={['btn', { 'btn--primary': s.label === 'LinkedIn' }]}
+              href={s.href}
+              target="_blank"
+              rel="noopener"
+            >
+              {s.label}
+            </a>
+          ))
         }
       </div>
     </div>
