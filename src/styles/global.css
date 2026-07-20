@@ -80,20 +80,6 @@ body {
   transition: background 0.3s var(--ease), color 0.3s var(--ease);
   overflow-x: hidden;
 }
-/* Global tech-grid behind the whole page so no section is empty */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: -2;
-  pointer-events: none;
-  background-image:
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: 44px 44px;
-  -webkit-mask-image: radial-gradient(125% 125% at 50% 38%, #000 72%, transparent 100%);
-  mask-image: radial-gradient(125% 125% at 50% 38%, #000 72%, transparent 100%);
-}
 img {
   max-width: 100%;
   display: block;
@@ -180,6 +166,41 @@ ul {
   font-family: var(--font-mono);
   font-weight: 500;
   color: var(--accent);
+}
+
+/* ---- Per-section backgrounds (alternating grid / aurora) ---- */
+/* Grid pattern */
+.bg-grid {
+  position: relative;
+  isolation: isolate;
+}
+.bg-grid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 40px 40px;
+  -webkit-mask-image: radial-gradient(120% 100% at 50% 0%, #000 45%, transparent 85%);
+  mask-image: radial-gradient(120% 100% at 50% 0%, #000 45%, transparent 85%);
+}
+/* Aurora — soft colour, no pattern */
+.bg-aurora {
+  position: relative;
+  isolation: isolate;
+}
+.bg-aurora::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(55% 65% at 12% 12%, var(--accent-soft), transparent 62%),
+    radial-gradient(52% 62% at 88% 88%, rgba(139, 92, 246, 0.11), transparent 62%);
 }
 
 /* ---- Soft section glow (alternating sides for depth) ---- */
