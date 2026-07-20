@@ -80,6 +80,20 @@ body {
   transition: background 0.3s var(--ease), color 0.3s var(--ease);
   overflow-x: hidden;
 }
+/* Global tech-grid behind the whole page so no section is empty */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 44px 44px;
+  -webkit-mask-image: radial-gradient(125% 125% at 50% 38%, #000 72%, transparent 100%);
+  mask-image: radial-gradient(125% 125% at 50% 38%, #000 72%, transparent 100%);
+}
 img {
   max-width: 100%;
   display: block;
@@ -168,39 +182,29 @@ ul {
   color: var(--accent);
 }
 
-/* ---- Futuristic tech-grid background ---- */
-.tech-grid {
+/* ---- Soft section glow (alternating sides for depth) ---- */
+.tech-glow {
   position: relative;
   isolation: isolate;
 }
-.tech-grid::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background-image:
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: 34px 34px;
-  -webkit-mask-image: radial-gradient(115% 80% at 50% 0%, #000 32%, transparent 72%);
-  mask-image: radial-gradient(115% 80% at 50% 0%, #000 32%, transparent 72%);
-}
-/* optional soft accent glow (clipped so it doesn't bleed into neighbours) */
-.tech-grid--glow {
-  overflow: hidden;
-}
-.tech-grid--glow::after {
+.tech-glow::after {
   content: '';
   position: absolute;
   z-index: -1;
   pointer-events: none;
-  width: 40rem;
-  height: 30rem;
-  top: -8rem;
-  right: -8rem;
-  background: radial-gradient(circle, var(--accent-soft), transparent 68%);
-  filter: blur(40px);
+  width: 46rem;
+  height: 46rem;
+  top: -12%;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--glow-color, var(--accent-soft)), transparent 66%);
+  filter: blur(60px);
+}
+.tech-glow--l::after {
+  left: -16rem;
+}
+.tech-glow--r::after {
+  right: -16rem;
+  --glow-color: rgba(139, 92, 246, 0.12); /* violet variant */
 }
 
 /* ---- Chip ---- */
