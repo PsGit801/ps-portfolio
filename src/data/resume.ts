@@ -112,6 +112,8 @@ export type Project = {
   points: string[];
   tags: string[];
   links?: { label: string; href: string }[];
+  image?: string;
+  imageAlt?: string;
 };
 
 export const projects: Project[] = [
@@ -125,6 +127,9 @@ export const projects: Project[] = [
     ],
     tags: ['Python', 'Backtesting', 'SQLite', 'Automation'],
     links: [{ label: 'Code', href: 'https://github.com/PsGit801/quantus' }],
+    image: '/quantus-chart.png',
+    imageAlt:
+      'Quantus alert chart — FOXA weekly candlesticks with the double-bottom flush-reclaim pattern, neckline target, and entry/stop markers.',
   },
   {
     name: 'Published Research Paper — AIBPM',

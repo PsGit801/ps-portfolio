@@ -9,6 +9,18 @@ import { projects } from '../data/resume';
       {
         projects.map((p) => (
           <article class="card reveal">
+            {p.image && (
+              <div class="card__media">
+                <img
+                  src={p.image}
+                  alt={p.imageAlt}
+                  width="846"
+                  height="630"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            )}
             <header class="card__head">
               <h3 class="card__title">{p.name}</h3>
             </header>
@@ -52,7 +64,18 @@ import { projects } from '../data/resume';
     border: 1px solid var(--border);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
+    overflow: hidden;
     transition: transform 0.12s ease, border-color 0.15s ease;
+  }
+  .card__media {
+    margin: -1.5rem -1.5rem 0.4rem;
+    border-bottom: 1px solid var(--border);
+    background: #fff;
+  }
+  .card__media img {
+    display: block;
+    width: 100%;
+    height: auto;
   }
   .card:hover {
     transform: translateY(-3px);
