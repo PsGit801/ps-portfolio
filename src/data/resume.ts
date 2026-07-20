@@ -127,9 +127,9 @@ export const projects: Project[] = [
     ],
     tags: ['Python', 'Backtesting', 'SQLite', 'Automation'],
     links: [{ label: 'Code', href: 'https://github.com/PsGit801/quantus' }],
-    image: '/quantus-chart.png',
+    image: '/quantus-alert.png',
     imageAlt:
-      'Quantus alert chart — FOXA weekly candlesticks with the double-bottom flush-reclaim pattern, neckline target, and entry/stop markers.',
+      'Quantus Telegram alert — FOXA weekly double-bottom chart plus the message: entry, stop, neckline target, reward:risk, and risk-based position sizing.',
   },
   {
     name: 'Published Research Paper — AIBPM',
