@@ -1,40 +1,69 @@
 ---
 import { projects } from '../data/resume';
+
+const featured = projects.filter((p) => p.image);
+const rest = projects.filter((p) => !p.image);
 ---
 
 <section id="projects" class="section bg-aurora">
   <div class="container section-split">
     <h2 class="section-title reveal">Projects</h2>
-    <div class="grid">
+
+    <div class="projects">
       {
-        projects.map((p) => (
-          <article class="card reveal">
-            {p.image && (
-              <div class="card__media">
-                <img
-                  src={p.image}
-                  alt={p.imageAlt}
-                  width="846"
-                  height="630"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-            )}
-            <header class="card__head">
+        featured.map((p) => (
+          <article class="card card--featured reveal">
+            <div class="card__media">
+              <img
+                src={p.image}
+                alt={p.imageAlt}
+                width="846"
+                height="630"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="card__body">
               <h3 class="card__title">{p.name}</h3>
-            </header>
-            <p class="card__blurb">{p.blurb}</p>
-            <ul class="card__points">
-              {p.points.map((pt) => <li>{pt}</li>)}
-            </ul>
-            <ul class="card__tags">
-              {p.tags.map((t) => (
-                <li class="chip">{t}</li>
-              ))}
-            </ul>
+              <p class="card__blurb">{p.blurb}</p>
+              <ul class="card__points">
+                {p.points.map((pt) => (
+                  <li>{pt}</li>
+                ))}
+              </ul>
+              <ul class="card__tags">
+                {p.tags.map((t) => (
+                  <li class="chip">{t}</li>
+                ))}
+              </ul>
+              {p.links && p.links.length > 0 && (
+                <div class="card__links">
+                  {p.links.map((l) => (
+                    <a class="card__link" href={l.href} target="_blank" rel="noopener">
+                      {l.label} <span aria-hidden="true">↗</span>
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+          </article>
+        ))
+      }
+
+      {
+        rest.map((p) => (
+          <article class="card card--compact reveal">
+            <div class="card__body">
+              <h3 class="card__title">{p.name}</h3>
+              <p class="card__blurb">{p.blurb}</p>
+              <ul class="card__tags">
+                {p.tags.map((t) => (
+                  <li class="chip">{t}</li>
+                ))}
+              </ul>
+            </div>
             {p.links && p.links.length > 0 && (
-              <div class="card__links">
+              <div class="card__links card__links--side">
                 {p.links.map((l) => (
                   <a class="card__link" href={l.href} target="_blank" rel="noopener">
                     {l.label} <span aria-hidden="true">↗</span>
@@ -50,16 +79,11 @@ import { projects } from '../data/resume';
 </section>
 
 <style>
-  .grid {
+  .projects {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.25rem;
   }
   .card {
-    display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
-    padding: 1.5rem;
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius);
@@ -67,9 +91,23 @@ import { projects } from '../data/resume';
     overflow: hidden;
     transition: transform 0.12s ease, border-color 0.15s ease;
   }
+  .card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+  }
+  .card__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    padding: 1.5rem;
+  }
+
+  /* Media — a framed chart thumbnail */
   .card__media {
-    margin: -1.5rem -1.5rem 0.4rem;
-    border-bottom: 1px solid var(--border);
+    margin: 1.25rem 1.25rem 0.25rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
     background: #fff;
   }
   .card__media img {
@@ -77,10 +115,44 @@ import { projects } from '../data/resume';
     width: 100%;
     height: auto;
   }
-  .card:hover {
-    transform: translateY(-3px);
-    border-color: var(--accent);
+
+  /* Featured: chart beside text on wide screens */
+  @media (min-width: 760px) {
+    .card--featured {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      align-items: center;
+    }
+    .card--featured .card__media {
+      margin: 1.5rem;
+    }
+    .card--featured .card__body {
+      padding-left: 0;
+    }
   }
+
+  /* Compact row: text left, link right */
+  .card--compact .card__body {
+    gap: 0.6rem;
+  }
+  @media (min-width: 620px) {
+    .card--compact {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+    .card--compact .card__body {
+      flex: 1;
+    }
+    .card--compact .card__links--side {
+      flex-shrink: 0;
+      padding: 0 1.5rem 0 0;
+      margin: 0;
+      border-top: none;
+    }
+  }
+
   .card__title {
     font-size: 1.1rem;
     font-weight: 600;
