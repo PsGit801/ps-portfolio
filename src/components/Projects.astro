@@ -36,14 +36,26 @@ const rest = projects.filter((p) => !p.image);
                   <li class="chip">{t}</li>
                 ))}
               </ul>
-              {p.links && p.links.length > 0 && (
+              {p.slug ? (
                 <div class="card__links">
-                  {p.links.map((l) => (
-                    <a class="card__link" href={l.href} target="_blank" rel="noopener">
-                      {l.label} <span aria-hidden="true">↗</span>
-                    </a>
-                  ))}
+                  <a
+                    class="card__link card__stretch"
+                    href={`/projects/${p.slug}`}
+                    aria-label={`View the ${p.name} project`}
+                  >
+                    View project <span aria-hidden="true">→</span>
+                  </a>
                 </div>
+              ) : (
+                p.links && p.links.length > 0 && (
+                  <div class="card__links">
+                    {p.links.map((l) => (
+                      <a class="card__link" href={l.href} target="_blank" rel="noopener">
+                        {l.label} <span aria-hidden="true">↗</span>
+                      </a>
+                    ))}
+                  </div>
+                )
               )}
             </div>
           </article>
@@ -94,6 +106,25 @@ const rest = projects.filter((p) => !p.image);
   .card:hover {
     transform: translateY(-3px);
     border-color: var(--accent);
+  }
+
+  /* Whole-card link (case-study cards): the visible "View case study" link
+     stretches an invisible hit area over the entire card. */
+  .card--featured:has(.card__stretch) {
+    position: relative;
+    cursor: pointer;
+  }
+  .card__stretch::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+  .card__stretch span {
+    transition: transform 0.15s var(--ease);
+  }
+  .card--featured:has(.card__stretch):hover .card__stretch span {
+    transform: translateX(3px);
   }
   .card__body {
     display: flex;

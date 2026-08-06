@@ -106,6 +106,15 @@ export const experience: Experience[] = [
   },
 ];
 
+// A full case-study page rendered at /projects/[slug].
+export type CaseStudy = {
+  tagline: string;
+  overview: string[]; // intro paragraphs
+  build: { title: string; body: string }[]; // "what I built" groups
+  stack: string[]; // full tech list (chips)
+  gallery: { src: string; alt: string; caption?: string }[];
+};
+
 export type Project = {
   name: string;
   blurb: string;
@@ -114,6 +123,8 @@ export type Project = {
   links?: { label: string; href: string }[];
   image?: string;
   imageAlt?: string;
+  slug?: string; // if set, the card links to /projects/[slug]
+  detail?: CaseStudy; // full case-study content for that page
 };
 
 export const projects: Project[] = [
@@ -130,6 +141,71 @@ export const projects: Project[] = [
     image: '/quantus-alert.png',
     imageAlt:
       'Quantus Telegram alert — FOXA weekly double-bottom chart plus the message: entry, stop, neckline target, reward:risk, and risk-based position sizing.',
+  },
+  {
+    name: 'Multi-Brand F&B Group — Marketing Site',
+    blurb:
+      'A production marketing website for a six-brand F&B group — one data-driven template for every brand, a working SMTP contact form, and self-hosted on a Linux VM with a staging → production workflow.',
+    points: [
+      'Six brand pages rendered from one shared, data-driven Next.js template.',
+      'Working contact form with server-side email delivery over SMTP.',
+      'Self-hosted on a Linux VM (Nginx, PM2, Cloudflare HTTPS) with a staging → production promotion workflow.',
+    ],
+    tags: ['Next.js', 'TypeScript', 'Tailwind', 'Nginx', 'Self-hosted'],
+    slug: 'fnb-group',
+    image: '/hospitality/cover.jpg',
+    imageAlt: 'Brands overview page of the multi-brand F&B marketing site.',
+    detail: {
+      tagline:
+        'Designed, built, and self-hosted a production marketing site for a multi-brand F&B group — front end to server.',
+      overview: [
+        'A production marketing website for a multi-brand food & beverage group spanning six brands. Every brand page is rendered from one shared, data-driven template, so the whole site stays visually consistent and adding or updating a brand is a content change rather than a rebuild.',
+        'I built the front end, wired a working contact form to real email delivery, and self-hosted the whole thing on a Linux VM — with separate staging and production environments and a controlled workflow to promote changes only after they have been reviewed on staging.',
+      ],
+      build: [
+        {
+          title: 'Front end & content model',
+          body: 'Next.js 15 (App Router) with TypeScript and Tailwind CSS, plus Framer Motion for the animations. A single data-driven component template renders all six brand pages from a shared layout, keeping the design consistent and the code DRY. Fully responsive across desktop, tablet, and mobile.',
+        },
+        {
+          title: 'Contact form with real email delivery',
+          body: 'A working contact form that delivers submissions by email server-side over SMTP (Nodemailer). Credentials live in environment variables, kept out of version control.',
+        },
+        {
+          title: 'Self-hosted deployment',
+          body: 'Provisioned and deployed to an Ubuntu Linux VM: Nginx as a reverse proxy, PM2 to keep the app running as a persistent service that survives reboots, and Cloudflare-fronted HTTPS in front of it all.',
+        },
+        {
+          title: 'Staging → production workflow',
+          body: 'Isolated staging and production environments on the same server — separate ports, folders, and processes — with a controlled promotion step so changes ship to staging for review before they go live.',
+        },
+        {
+          title: 'Repo hygiene',
+          body: 'Managed in Git/GitLab, with build artifacts and raw design assets deliberately kept out of tracked source to keep the repository lean.',
+        },
+      ],
+      stack: [
+        'Next.js 15',
+        'React',
+        'TypeScript',
+        'Tailwind CSS',
+        'Framer Motion',
+        'Node.js',
+        'Nodemailer (SMTP)',
+        'Nginx',
+        'PM2',
+        'Ubuntu / Linux',
+        'Cloudflare',
+        'Git / GitLab',
+      ],
+      gallery: [
+        { src: '/hospitality/home.jpg', alt: 'Homepage hero of the F&B group site', caption: 'Landing page — hero with a rotating brand showcase.' },
+        { src: '/hospitality/brands.jpg', alt: 'Brands overview page listing the six brands', caption: 'Brands overview — six brands rendered from one shared template.' },
+        { src: '/hospitality/chefs.jpg', alt: 'Our Chefs page', caption: 'Editorial pages (Our Chefs) built from the same design system.' },
+        { src: '/hospitality/contact.jpg', alt: 'Contact page with the working form', caption: 'Contact page — the form that emails submissions over SMTP.' },
+        { src: '/hospitality/mobile.jpg', alt: 'Mobile view of the homepage', caption: 'Fully responsive down to mobile.' },
+      ],
+    },
   },
   {
     name: 'Published Research Paper — AIBPM',
@@ -149,19 +225,23 @@ export const skills: { group: string; items: string[] }[] = [
   },
   {
     group: 'Languages',
-    items: ['Python', 'SQL', 'C++', 'C#', 'R'],
+    items: ['Python', 'TypeScript', 'JavaScript', 'SQL', 'C++', 'C#', 'R'],
+  },
+  {
+    group: 'Web & Frontend',
+    items: ['Next.js', 'React', 'Tailwind CSS', 'Framer Motion'],
   },
   {
     group: 'Backend & Data Engineering',
-    items: ['FastAPI', 'REST API design', 'Async pipelines & workers', 'Playwright', 'Selenium', 'BeautifulSoup', 'Streamlit'],
+    items: ['FastAPI', 'Node.js', 'REST API design', 'SMTP / Nodemailer', 'Async pipelines & workers', 'Playwright', 'Selenium', 'BeautifulSoup', 'Streamlit'],
   },
   {
     group: 'ML & Data Science',
     items: ['PyTorch', 'TensorFlow', 'scikit-learn', 'Time-series forecasting', 'NLP & sentiment analysis'],
   },
   {
-    group: 'Infrastructure & Tooling',
-    items: ['Docker', 'CUDA / GPU optimization', 'Qdrant', 'FAISS', 'n8n', 'Git'],
+    group: 'Infrastructure & Deployment',
+    items: ['Docker', 'CUDA / GPU optimization', 'Nginx', 'PM2', 'Linux / VM deployment', 'Cloudflare', 'Staging → production workflow', 'Qdrant', 'FAISS', 'n8n', 'Git / GitLab'],
   },
   {
     group: 'Data Visualization',
