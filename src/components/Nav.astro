@@ -1,21 +1,32 @@
 ---
 import { profile } from '../data/resume';
 
+interface Props {
+  active?: string; // href of the link to mark active on non-home pages
+}
+
+const { active } = Astro.props;
+
+// Root-relative so the nav works from any page, not just the home page.
 const links = [
-  { href: '#about', label: 'About' },
-  { href: '#experience', label: 'Experience' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#contact', label: 'Contact' },
+  { href: '/#about', label: 'About' },
+  { href: '/#experience', label: 'Experience' },
+  { href: '/#skills', label: 'Skills' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/#contact', label: 'Contact' },
 ];
 ---
 
 <header class="nav">
   <div class="container nav__inner">
-    <a href="#top" class="nav__brand">{profile.name}</a>
+    <a href="/#top" class="nav__brand">{profile.name}</a>
 
     <nav class="nav__links" aria-label="Primary">
-      {links.map((l) => <a href={l.href} data-nav-link>{l.label}</a>)}
+      {links.map((l) => (
+        <a href={l.href} data-nav-link class:list={{ 'is-active': l.href === active }}>
+          {l.label}
+        </a>
+      ))}
     </nav>
 
     <div class="nav__actions">

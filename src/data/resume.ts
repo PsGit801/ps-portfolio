@@ -115,8 +115,19 @@ export type CaseStudy = {
   gallery: { src: string; alt: string; caption?: string }[];
 };
 
+export type ProjectCategory = 'ai' | 'web' | 'research';
+
+// Groups on the /projects page, in display order.
+export const projectCategories: { id: ProjectCategory; title: string; blurb: string }[] = [
+  { id: 'ai', title: 'AI & Automation', blurb: 'Bots, pipelines, and systems that automate decisions.' },
+  { id: 'web', title: 'Websites & Web Apps', blurb: 'Production websites designed, built, and shipped for clients.' },
+  { id: 'research', title: 'Research', blurb: 'Published academic work.' },
+];
+
 export type Project = {
   name: string;
+  category: ProjectCategory;
+  highlight?: boolean; // shown in the home-page teaser
   blurb: string;
   points: string[];
   tags: string[];
@@ -130,6 +141,8 @@ export type Project = {
 export const projects: Project[] = [
   {
     name: 'Quantus — Trading Alert Bot',
+    category: 'ai',
+    highlight: true,
     blurb: 'A Python bot that scans stocks for double-bottom reversals (daily & weekly), confirms with a volume-backed breakout, and sends Telegram/Discord alerts with annotated charts and position sizing.',
     points: [
       'Walk-forward backtesting engine and parameter sweep with SQLite state and cron/launchd scheduling.',
@@ -144,6 +157,8 @@ export const projects: Project[] = [
   },
   {
     name: 'Reveillon Group — Multi-Brand Marketing Site',
+    category: 'web',
+    highlight: true,
     blurb:
       'The production marketing website for Reveillon Group, a six-brand lifestyle & hospitality group (MCR, NOWWA, BOWLCRAFTED, X Society, X Office Bar, XVI) — one data-driven template for every brand, a working SMTP contact form, and self-hosted on a Linux VM with a staging → production workflow.',
     points: [
@@ -210,6 +225,7 @@ export const projects: Project[] = [
   },
   {
     name: 'VCI Healthcare — Healthcare Concierge Site',
+    category: 'web',
     blurb:
       'A premium marketing site for a cross-border healthcare concierge — a calm, editorial design that walks visitors through a six-step care journey, a detailed product page, and a full compliance disclaimer.',
     points: [
@@ -265,6 +281,7 @@ export const projects: Project[] = [
   },
   {
     name: 'Reveillon Creations — Livestream Talent Landing Page',
+    category: 'web',
     blurb:
       'A Chinese-language recruitment landing page for Reveillon Creations, Reveillon Group\'s livestreaming & artist-incubation brand — a bold dark/neon design that turns visitors into streamer applicants.',
     points: [
@@ -320,6 +337,7 @@ export const projects: Project[] = [
   },
   {
     name: 'Published Research Paper — AIBPM',
+    category: 'research',
     blurb: 'Peer-reviewed research contribution published on ResearchGate.',
     points: [
       'AIBPM publication covering applied analytics research.',

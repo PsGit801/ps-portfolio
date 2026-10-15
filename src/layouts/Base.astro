@@ -113,13 +113,13 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
       const navLinks = Array.from(
         document.querySelectorAll<HTMLAnchorElement>('[data-nav-link]')
       );
-      const byId = new Map(navLinks.map((l) => [l.getAttribute('href')?.slice(1), l]));
+      const byId = new Map(navLinks.map((l) => [l.getAttribute('href')?.split('#')[1], l]));
       const sections = Array.from(document.querySelectorAll('main section[id]'));
       if ('IntersectionObserver' in window && navLinks.length) {
         const so = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
-              if (entry.isIntersecting) {
+              if (entry.isIntersecting && byId.has(entry.target.id)) {
                 navLinks.forEach((l) => l.classList.remove('is-active'));
                 byId.get(entry.target.id)?.classList.add('is-active');
               }
