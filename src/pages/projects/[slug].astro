@@ -31,6 +31,17 @@ const d = project.detail!;
         <ul class="case__stack">
           {d.stack.map((s) => <li class="chip">{s}</li>)}
         </ul>
+        {
+          project.links && project.links.length > 0 && (
+            <div class="case__links">
+              {project.links.map((l) => (
+                <a class="case__link" href={l.href} target="_blank" rel="noopener">
+                  {l.label} <span aria-hidden="true">↗</span>
+                </a>
+              ))}
+            </div>
+          )
+        }
       </section>
 
       <section class="case__overview reveal">
@@ -128,6 +139,30 @@ const d = project.detail!;
     max-width: 760px;
     margin-bottom: 2.75rem;
   }
+  .case__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1.25rem;
+  }
+  .case__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.55rem 1rem;
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--accent);
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .case__link:hover {
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+  }
+
   .case__title {
     font-size: clamp(1.8rem, 4vw, 2.6rem);
     font-weight: 700;

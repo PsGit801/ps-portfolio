@@ -143,23 +143,24 @@ export const projects: Project[] = [
       'Quantus Telegram alert — FOXA weekly double-bottom chart plus the message: entry, stop, neckline target, reward:risk, and risk-based position sizing.',
   },
   {
-    name: 'Multi-Brand F&B Group — Marketing Site',
+    name: 'Reveillon Group — Multi-Brand Marketing Site',
     blurb:
-      'A production marketing website for a six-brand F&B group — one data-driven template for every brand, a working SMTP contact form, and self-hosted on a Linux VM with a staging → production workflow.',
+      'The production marketing website for Reveillon Group, a six-brand lifestyle & hospitality group (MCR, NOWWA, BOWLCRAFTED, X Society, X Office Bar, XVI) — one data-driven template for every brand, a working SMTP contact form, and self-hosted on a Linux VM with a staging → production workflow.',
     points: [
       'Six brand pages rendered from one shared, data-driven Next.js template.',
       'Working contact form with server-side email delivery over SMTP.',
       'Self-hosted on a Linux VM (Nginx, PM2, Cloudflare HTTPS) with a staging → production promotion workflow.',
     ],
     tags: ['Next.js', 'TypeScript', 'Tailwind', 'Nginx', 'Self-hosted'],
+    links: [{ label: 'Visit live site', href: 'https://reveillon-group.com' }],
     slug: 'fnb-group',
     image: '/hospitality/cover.jpg',
-    imageAlt: 'Brands overview page of the multi-brand F&B marketing site.',
+    imageAlt: 'Brands overview page of the Reveillon Group marketing site.',
     detail: {
       tagline:
-        'Designed, built, and self-hosted a production marketing site for a multi-brand F&B group — front end to server.',
+        'Designed, built, and self-hosted the production marketing site for Reveillon Group, a multi-brand lifestyle & hospitality group — front end to server.',
       overview: [
-        'A production marketing website for a multi-brand food & beverage group spanning six brands. Every brand page is rendered from one shared, data-driven template, so the whole site stays visually consistent and adding or updating a brand is a content change rather than a rebuild.',
+        'The production marketing website for Reveillon Group, a Malaysian lifestyle & hospitality group spanning six brands (MCR, NOWWA, BOWLCRAFTED, X Society, X Office Bar, XVI). Every brand page is rendered from one shared, data-driven template, so the whole site stays visually consistent and adding or updating a brand is a content change rather than a rebuild.',
         'I built the front end, wired a working contact form to real email delivery, and self-hosted the whole thing on a Linux VM — with separate staging and production environments and a controlled workflow to promote changes only after they have been reviewed on staging.',
       ],
       build: [
@@ -199,11 +200,121 @@ export const projects: Project[] = [
         'Git / GitLab',
       ],
       gallery: [
-        { src: '/hospitality/home.jpg', alt: 'Homepage hero of the F&B group site', caption: 'Landing page — hero with a rotating brand showcase.' },
+        { src: '/hospitality/home.jpg', alt: 'Homepage hero of the Reveillon Group site', caption: 'Landing page — hero with a rotating brand showcase.' },
         { src: '/hospitality/brands.jpg', alt: 'Brands overview page listing the six brands', caption: 'Brands overview — six brands rendered from one shared template.' },
         { src: '/hospitality/chefs.jpg', alt: 'Our Chefs page', caption: 'Editorial pages (Our Chefs) built from the same design system.' },
         { src: '/hospitality/contact.jpg', alt: 'Contact page with the working form', caption: 'Contact page — the form that emails submissions over SMTP.' },
         { src: '/hospitality/mobile.jpg', alt: 'Mobile view of the homepage', caption: 'Fully responsive down to mobile.' },
+      ],
+    },
+  },
+  {
+    name: 'VCI Healthcare — Healthcare Concierge Site',
+    blurb:
+      'A premium marketing site for a cross-border healthcare concierge — a calm, editorial design that walks visitors through a six-step care journey, a detailed product page, and a full compliance disclaimer.',
+    points: [
+      'Static Astro site with a refined editorial design system (serif display type, soft medical palette).',
+      'Home → product → contact funnel: six-step journey, retreat package, and science explainers for three cell therapies.',
+      'Accessible disclaimer modal covering provider roles, regulatory status, and PDPA 2010 data handling.',
+    ],
+    tags: ['Astro', 'TypeScript', 'CSS', 'Responsive', 'Accessibility'],
+    links: [{ label: 'Visit site (staging)', href: 'https://stg.vcihealthcare.com/' }],
+    slug: 'vci-healthcare',
+    image: '/vci/home.jpg',
+    imageAlt: 'VCI Healthcare homepage hero — "A More Personal Approach to Your Wellness Journey".',
+    detail: {
+      tagline:
+        'Designed and built the marketing site for VCI Healthcare, a Kuala Lumpur–based cross-border healthcare concierge.',
+      overview: [
+        'VCI Healthcare arranges access to selected healthcare expertise and cellular wellness programmes in China for clients in Malaysia. The site has to do two things at once: feel premium and reassuring to prospective clients, and be scrupulously clear that VCI is a coordination platform — not a medical provider.',
+        'I built it as a fast, static Astro site with an editorial design system, structured around a simple funnel — understand the journey, explore the programme, start a conversation — with compliance language surfaced site-wide through an accessible disclaimer modal.',
+      ],
+      build: [
+        {
+          title: 'Editorial design system',
+          body: 'A calm, premium visual language — serif display headings with italic accents, a soft medical-blue palette, generous whitespace, and rounded cards — applied consistently across every page through shared components.',
+        },
+        {
+          title: 'Journey-led home page',
+          body: 'Hero with a single primary call to action, a positioning section, a featured retreat, and a six-step "Curated Around You" journey (assessment → consultation → programme → travel → rejuvenation → continued care) that explains the service at a glance.',
+        },
+        {
+          title: 'Product & science content',
+          body: 'An "Our Product" page for the Nansha Rejuvenative Retreat (4D3N / 5D4N) with an itemised inclusion grid, plus explainer sections for Mesenchymal Stem Cells, NK cells, and T cells and a step-by-step "first step" timeline that leads into contact.',
+        },
+        {
+          title: 'Compliance disclaimer modal',
+          body: 'A site-wide, keyboard-accessible disclaimer dialog (progressively enhanced — the trigger only renders with JavaScript) covering VCI\'s role, third-party providers, no-medical-advice, regulatory status, outcomes, fees, PDPA 2010 personal-data handling, and liability.',
+        },
+        {
+          title: 'Responsive & performant',
+          body: 'Static output with hashed, optimised assets; layouts collapse cleanly to a mobile menu and single-column flow on phones.',
+        },
+      ],
+      stack: ['Astro', 'TypeScript', 'HTML / CSS', 'Responsive design', 'Accessible dialogs', 'Static site generation'],
+      gallery: [
+        { src: '/vci/home.jpg', alt: 'VCI Healthcare homepage hero', caption: 'Home — hero with a single, clear call to action.' },
+        { src: '/vci/steps.jpg', alt: 'Six-step care journey cards', caption: 'The six-step journey that explains the service at a glance.' },
+        { src: '/vci/product.jpg', alt: 'Nansha Rejuvenative Retreat product card', caption: 'Our Product — the retreat package with an itemised inclusion grid.' },
+        { src: '/vci/cells.jpg', alt: 'Different cells, different functions section', caption: 'Science explainers for three cell types.' },
+        { src: '/vci/nk-cells.jpg', alt: 'Natural Killer cells section on a dark band', caption: 'Alternating light/dark bands keep long-form content readable.' },
+        { src: '/vci/disclaimer.jpg', alt: 'Disclaimer modal open over the page', caption: 'Site-wide compliance disclaimer, opened as an accessible modal.' },
+        { src: '/vci/mobile.jpg', alt: 'Mobile view of the VCI homepage', caption: 'Fully responsive down to mobile.' },
+      ],
+    },
+  },
+  {
+    name: 'Reveillon Creations — Livestream Talent Landing Page',
+    blurb:
+      'A Chinese-language recruitment landing page for Reveillon Creations, Reveillon Group\'s livestreaming & artist-incubation brand — a bold dark/neon design that turns visitors into streamer applicants.',
+    points: [
+      'Single-page Next.js funnel: business areas, career ladder, why Douyin, 7 monetisation paths, 7 streamer categories.',
+      'Conversion CTAs throughout — Google Form application, WhatsApp, and email — with a video hero.',
+      'Shipped as part of the Reveillon Group site and self-hosted behind Cloudflare.',
+    ],
+    tags: ['Next.js', 'TypeScript', 'Tailwind', 'Cloudflare', 'Landing page'],
+    links: [{ label: 'Visit live site', href: 'https://reveillon-group.com/creations' }],
+    slug: 'reveillon-creations',
+    image: '/creations/home.jpg',
+    imageAlt: 'Reveillon Creations hero — "以直播为起点，成就你的个人 IP" with a phone-framed video.',
+    detail: {
+      tagline:
+        'Designed and built a conversion-focused, Chinese-language landing page to recruit livestream hosts for Reveillon Creations.',
+      overview: [
+        'Reveillon Creations is the livestreaming and artist-incubation brand of Reveillon Group. It recruits new hosts — mostly for Douyin — and offers a path from streaming into personal IP, brand deals, film, music, and artist groups.',
+        'The page is a single, long-scroll recruitment funnel written for a Chinese-speaking audience: each section answers one objection (who are you, why you, why Douyin, how do I earn, is there a niche for me) and ends at a clear "apply now" call to action.',
+      ],
+      build: [
+        {
+          title: 'Brand & visual direction',
+          body: 'A dark, neon purple-to-pink system that matches the livestream aesthetic, alternating with light sections for data-heavy content, with a phone-framed video in the hero.',
+        },
+        {
+          title: 'Story-driven sections',
+          body: 'About (tabbed business areas: livestreaming, film, music, artist incubation), Why Choose Us (a numbered timeline including the host → personal IP → brand → film/music → artist career ladder), Why Douyin (headline stats + algorithm explainer), seven monetisation paths split into "now" and "future", and seven streamer categories.',
+        },
+        {
+          title: 'Conversion funnel',
+          body: 'Repeated application CTAs that route to a Google Form, plus WhatsApp click-to-chat and Cloudflare-protected email — a sticky "加入我们" button in the header keeps the action one tap away.',
+        },
+        {
+          title: 'Part of the Reveillon Group platform',
+          body: 'Built in the same Next.js codebase as the Reveillon Group site, using Next/Image optimisation and the existing self-hosted Nginx + PM2 deployment behind Cloudflare.',
+        },
+        {
+          title: 'Mobile-first',
+          body: 'Most applicants arrive from social apps on their phones, so every section stacks cleanly on mobile with thumb-sized CTAs.',
+        },
+      ],
+      stack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Next/Image', 'Google Forms', 'Cloudflare', 'Nginx', 'PM2'],
+      gallery: [
+        { src: '/creations/home.jpg', alt: 'Reveillon Creations hero with phone-framed video', caption: 'Hero — headline, primary CTA, and a phone-framed video.' },
+        { src: '/creations/about.jpg', alt: 'About section with tabbed business areas', caption: 'About — tabbed tour of the four business areas.' },
+        { src: '/creations/why-us.jpg', alt: 'Why choose us timeline', caption: 'Why choose us — a numbered timeline including the career ladder.' },
+        { src: '/creations/douyin.jpg', alt: 'Why Douyin stats section', caption: 'Why Douyin — headline stats and algorithm explainer.' },
+        { src: '/creations/monetization.jpg', alt: 'Seven monetisation paths', caption: 'Seven monetisation paths, split into available now and future.' },
+        { src: '/creations/categories.jpg', alt: 'Seven streamer categories', caption: 'Seven streamer categories to help applicants find their niche.' },
+        { src: '/creations/mobile.jpg', alt: 'Mobile view of the Creations hero', caption: 'Mobile-first — most applicants arrive from social apps.' },
       ],
     },
   },
