@@ -115,10 +115,11 @@ export type CaseStudy = {
   gallery: { src: string; alt: string; caption?: string }[];
 };
 
-export type ProjectCategory = 'ai' | 'web' | 'research';
+export type ProjectCategory = 'platform' | 'ai' | 'web' | 'research';
 
 // Groups on the /projects page, in display order.
 export const projectCategories: { id: ProjectCategory; title: string; blurb: string }[] = [
+  { id: 'platform', title: 'AI Platforms', blurb: 'Full-stack AI products — customer app, API backend, billing, and operations.' },
   { id: 'ai', title: 'AI & Automation', blurb: 'Bots, pipelines, and systems that automate decisions.' },
   { id: 'web', title: 'Websites & Web Apps', blurb: 'Production websites designed, built, and shipped for clients.' },
   { id: 'research', title: 'Research', blurb: 'Published academic work.' },
@@ -139,6 +140,62 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  {
+    name: 'VGAIN Compute — AI API Platform',
+    category: 'platform',
+    highlight: true,
+    blurb:
+      'An AI API platform that gives customers access to multiple text and video models through one service — with accounts, API keys, usage tracking, credit-based billing, and an admin finance dashboard.',
+    points: [
+      'Built the customer experience, API backend, pricing system, and admin tools — and deployed it to production.',
+      'Model pricing from OpenRouter benchmarks and supplier costs, with price comparisons and historical records.',
+      'Request-level profitability reporting by customer, API key, and model; release validated by 461 passing tests.',
+    ],
+    tags: ['Next.js', 'TypeScript', 'Python', 'PostgreSQL', 'Docker'],
+    links: [{ label: 'Visit live platform', href: 'https://compute.vgallant.ai' }],
+    slug: 'vgain-compute',
+    image: '/vgain/home.jpg',
+    imageAlt: 'VGAIN Compute landing page — "Many models. One place to build." with a Playground preview.',
+    detail: {
+      tagline:
+        'Built and deployed a multi-model AI API platform end to end — customer app, API backend, pricing, billing, and admin finance tools.',
+      overview: [
+        'VGAIN Compute is an AI API platform that gives customers access to multiple models through one service. I built the customer experience, API backend, pricing system, and administration tools, and deployed the platform to production.',
+        'A central challenge was understanding profitability for each request. I developed reporting that connects customer usage and charges with supplier costs, distinguishes estimates from confirmed billing records, and lets administrators investigate margins by customer, API key, and model.',
+      ],
+      build: [
+        {
+          title: 'Customer experience',
+          body: 'Customer accounts, a browser Playground for trying models, self-serve API-key management, usage tracking, and spending controls — all in one Next.js + TypeScript workspace.',
+        },
+        {
+          title: 'Multi-model API backend',
+          body: 'One API in front of multiple text and video models, with an OpenAI-style chat-completions interface so customers can reuse existing integrations, and credit-based billing applied to every request.',
+        },
+        {
+          title: 'Model pricing system',
+          body: 'Prices set from OpenRouter benchmarks and supplier costs, with side-by-side price comparisons and historical pricing records so every change is traceable.',
+        },
+        {
+          title: 'Admin finance & request profitability',
+          body: 'A finance dashboard showing customer charges, supplier cost estimates, and gross profit (price spread) per request, broken down by customer, API key, and model — clearly separating estimates from confirmed supplier billing. Figures are gross, before infrastructure and other operating costs.',
+        },
+        {
+          title: 'Production operations',
+          body: 'Owned production deployment with Docker, PostgreSQL database migrations, access controls, and encrypted backups. The latest release was validated with 461 passing automated tests.',
+        },
+      ],
+      stack: ['Next.js', 'TypeScript', 'React', 'Python', 'PostgreSQL', 'Docker', 'OpenRouter', 'Automated testing'],
+      gallery: [
+        { src: '/vgain/home.jpg', alt: 'VGAIN Compute landing page hero', caption: 'Landing page — one API, many models.' },
+        { src: '/vgain/models.jpg', alt: 'Model catalogue cards', caption: 'Model catalogue — text models from multiple providers behind one API.' },
+        { src: '/vgain/workflow.jpg', alt: 'Playground, API keys, and usage workflow', caption: 'The customer journey: Playground → API keys → usage tracking.' },
+        { src: '/vgain/api.jpg', alt: 'API example with cURL', caption: 'OpenAI-style API, so existing integrations work with a base-URL change.' },
+        { src: '/vgain/controls.jpg', alt: 'Access, limits, and privacy controls', caption: 'Access controls, spending limits, and metadata-only request records.' },
+        { src: '/vgain/mobile.jpg', alt: 'Mobile view of the landing page', caption: 'Responsive down to mobile.' },
+      ],
+    },
+  },
   {
     name: 'Quantus — Trading Alert Bot',
     category: 'ai',
