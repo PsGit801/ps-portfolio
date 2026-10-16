@@ -1,5 +1,7 @@
 ---
-import { experience } from '../data/resume';
+import { experience, projects } from '../data/resume';
+
+const bySlug = new Map(projects.filter((p) => p.slug).map((p) => [p.slug, p]));
 ---
 
 <section id="experience" class="section bg-aurora">
@@ -36,6 +38,24 @@ import { experience } from '../data/resume';
                   <li set:html={p} />
                 ))}
               </ul>
+
+              {job.projects && job.projects.length > 0 && (
+                <div class="job__projects">
+                  <span class="job__projects-label">Projects built here</span>
+                  <ul>
+                    {job.projects.map((slug) => {
+                      const p = bySlug.get(slug);
+                      return p && (
+                        <li>
+                          <a class="chip chip--sm job__project" href={`/projects/${slug}`}>
+                            {p.name.split(' — ')[0]} <span aria-hidden="true">→</span>
+                          </a>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              )}
 
               {hidden.length > 0 && (
                 <details class="job__more">
@@ -129,6 +149,38 @@ import { experience } from '../data/resume';
     color: var(--text);
     font-size: 1.02rem;
     max-width: 62ch;
+  }
+
+  /* Links to case studies, both inline in bullets and in the projects row */
+  .job__points :global(a),
+  .job__points :global(a strong) {
+    color: var(--accent);
+  }
+  .job__projects {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.75rem;
+  }
+  .job__projects-label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .job__projects ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .job__project {
+    color: var(--text);
+  }
+  .job__project:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    text-decoration: none;
   }
 
   .job__stack {

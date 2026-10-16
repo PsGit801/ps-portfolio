@@ -49,6 +49,7 @@ export type Experience = {
   stack: string[];
   visible: number; // bullets shown before "Show more"
   points: string[]; // strongest first; may contain <strong> emphasis (rendered as HTML)
+  projects?: string[]; // slugs of case studies built in this role, linked under the bullets
 };
 
 export const experience: Experience[] = [
@@ -58,18 +59,22 @@ export const experience: Experience[] = [
     period: 'Dec 2025 – Present',
     location: 'Kuala Lumpur',
     summary:
-      'Own production AI platforms end-to-end — from GPU inference infrastructure to RAG, automation, and agentic pipelines.',
-    stack: ['vLLM', 'vLLM-Omni', 'Qdrant', 'n8n', 'FastAPI', 'Playwright', 'VLMs'],
+      'Own production AI systems end-to-end — GPU inference infrastructure, RAG, and workflow automation — plus full-stack AI products and client websites.',
+    stack: ['vLLM', 'vLLM-Omni', 'Qdrant', 'n8n', 'Manus', 'FastAPI', 'VLMs', 'Next.js', 'PostgreSQL'],
     visible: 4,
     points: [
-      'Architected and operated <strong>Pixel Factory</strong>, a self-hosted creative-generation platform serving <strong>FLUX 2</strong> image and <strong>LTX 2.3</strong> video models on vLLM-Omni.',
-      'Deployed <strong>DeepSeek V4 Flash</strong> across <strong>dual-GPU</strong> servers with vLLM + Open WebUI, delivering low-latency Text-as-a-Service.',
-      'Built a <strong>multi-tenant vector search</strong> platform on Qdrant with hybrid retrieval (BGE sparse + dense + reranking) for high-accuracy RAG.',
-      'Developed an <strong>autonomous invoice pipeline</strong> using Vision Language Models + Playwright to extract data and submit to POS systems.',
-      'Led enterprise automation and workflow orchestration with <strong>n8n</strong> across operational processes.',
-      'Engineered a <strong>Text-to-SQL</strong> service with query routing between SQL databases and RAG pipelines.',
-      'Designed an <strong>async embedding &amp; ingestion</strong> pipeline with job tracking and background workers for high-volume workflows.',
+      'Built and deployed <a href="/projects/vgain-compute"><strong>VGAIN Compute</strong></a>, a multi-model AI API platform with API keys, usage tracking, and credit-based billing.',
+      'Built and shipped <strong>multiple production websites</strong> — <a href="/projects/fnb-group">Reveillon Group</a>, <a href="/projects/vci-healthcare">VCI Healthcare</a>, and <a href="/projects/reveillon-creations">Reveillon Creations</a>.',
+      'Architected, deployed, and operated a self-hosted <strong>AI creative-generation platform</strong> serving <strong>FLUX 2</strong> image and <strong>LTX 2.3</strong> video models on vLLM-Omni inference infrastructure.',
+      'Deployed and managed <strong>DeepSeek V4 Flash</strong> inference across <strong>dual-GPU</strong> servers with vLLM, integrated with Open WebUI.',
+      'Built a <strong>multi-tenant vector search</strong> platform on Qdrant with hybrid retrieval (BGE sparse + dense embeddings + reranking) for high-accuracy RAG.',
+      'Developed an <strong>AI invoice-processing pipeline</strong> using Vision Language Models to extract structured data from unstructured invoices.',
+      'Engineered a <strong>Text-to-SQL</strong> service with query routing between structured SQL databases and unstructured RAG pipelines to improve answer accuracy.',
+      'Designed an <strong>async embedding &amp; ingestion</strong> pipeline with job tracking, background workers, and scalable processing for high-volume AI data workflows.',
+      'Drove enterprise automation and workflow orchestration with <strong>n8n</strong> and <strong>Manus</strong>, streamlining operational processes and AI-driven workflows.',
+      'Implemented backend services and API integrations for AI inference, document processing, retrieval, workflow automation, and enterprise application connectivity.',
     ],
+    projects: ['vgain-compute', 'fnb-group', 'vci-healthcare', 'reveillon-creations'],
   },
   {
     role: 'AI/ML Engineer',
